@@ -3,7 +3,7 @@ package vector
 
 import "math"
 
-// Vector is an float64 vector.
+// Vector is a float64 slice.
 type Vector []float64
 
 // Len returns the length of v.
