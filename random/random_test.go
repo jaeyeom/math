@@ -19,6 +19,7 @@ func TestIntn(t *testing.T) {
 
 func ExampleShuffle() {
 	figures := sort.StringSlice{"rectangle", "hexagon", "square", "circle", "triangle", "pentagon"}
+	// For test purpose. For better randomness, you may use random.Intn.
 	deterministic := rand.New(rand.NewSource(1))
 	Shuffle(figures.Len(), deterministic.Intn, figures.Swap)
 	fmt.Println(figures)
