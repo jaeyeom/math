@@ -26,3 +26,16 @@ func ExampleShuffle() {
 	// Output:
 	// [pentagon circle rectangle square hexagon triangle]
 }
+
+func ExampleShuffle_closure() {
+	figures := []string{"rectangle", "hexagon", "square", "circle", "triangle", "pentagon"}
+	// For test purpose. For better randomness, you may use random.Intn.
+	deterministic := rand.New(rand.NewSource(1))
+	Shuffle(len(figures), deterministic.Intn, func(i, j int) {
+		figures[i], figures[j] = figures[j], figures[i]
+	})
+	fmt.Println(figures)
+	// Output:
+	// [pentagon circle rectangle square hexagon triangle]
+
+}
