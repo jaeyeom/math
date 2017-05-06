@@ -23,3 +23,24 @@ func Shuffle(size int, intn func(int) int, swap func(int, int)) {
 		swap(i, i+intn(size-i))
 	}
 }
+
+// Combination returns a random combination nCr, which is r-combinations from
+// [0, n) range. 0 <= r <= n should hold.
+func Combination(n, r int, intn func(int) int) map[int]struct{} {
+	s := map[int]struct{}{}
+	if r == n {
+		for i := 0; i < n; i++ {
+			s[i] = struct{}{}
+		}
+		return s
+	}
+	for i := n - r; i < n; i++ {
+		x := intn(i)
+		if _, picked := s[x]; !picked {
+			s[x] = struct{}{}
+		} else {
+			s[i] = struct{}{}
+		}
+	}
+	return s
+}

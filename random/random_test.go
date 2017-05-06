@@ -39,3 +39,32 @@ func ExampleShuffle_closure() {
 	// [pentagon circle rectangle square hexagon triangle]
 
 }
+
+func TestCombination(t *testing.T) {
+	for n := 1; n <= 10; n++ {
+		for r := 0; r <= n; r++ {
+			c := Combination(n, r, Intn)
+			if len(c) != r {
+				t.Errorf("size want %d actual %d", r, len(c))
+			}
+			for e := range c {
+				if e < 0 || e >= n {
+					t.Errorf("%d should be in [0, %d)", e, n)
+				}
+			}
+		}
+	}
+}
+
+func ExampleCombination() {
+	const r = 3
+	deterministic := rand.New(rand.NewSource(1))
+	c := Combination(10, r, deterministic.Intn)
+	l := make([]int, 0, r)
+	for n := range c {
+		l = append(l, n)
+	}
+	sort.Ints(l)
+	fmt.Println(l)
+	// Output: [2 6 7]
+}
